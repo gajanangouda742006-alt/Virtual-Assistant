@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahra Virtual Assistant</title>
+    <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Courgette&family=Momo+Trust+Display&family=Pacifico&family=Rubik+80s+Fade&family=Rubik+Wet+Paint&display=swap');
+    </style>
+
+</head>
+
+<body>
+    <div id="logo-area">
+    <img src="logo.jpg" id="logo" alt="logo">
+    <div id="assistantMsg">.........</div>
+    </div>
+
+    
+    <h1>I'm <span id="name">Sahra,</span>Your <span id="va">Virtual Assistant</span></h1>
+    
+    <video id="voice" autoplay muted loop playsinline>
+       <source src="voice.mp4" type="video/mp4">
+    </video>
+
+    
+    <button id="btn">
+    <img src="mic.svg" alt="mic">
+    <span id="content">Click here for Talk to me!</span>
+    </button>
+
+   <button id="historyBtn">History</button>
+
+   <div id="historyPanel">
+    <button id="closeHistory">✖</button>
+    <h3 id="mess">Command History</h3>
+    <ul id="historyList"></ul>
+   </div>
+    
+   <div id="internetStatus">⚠ No Internet Connection</div>
+   
+   <div id="goodbyeScreen">
+    <h1>Shutting Down...</h1>
+   </div>
+
+
+
+   <div id="openingScreen">
+
+     <video id="openingVideo" autoplay muted playsinline>
+        <source src="front.mp4" type="video/mp4">
+     </video>
+
+    <div id="load">Loading......</div>
+
+   </div>
+
+    <script src="assi.js"></script>
+
+</body>
+</html>
