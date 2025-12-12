@@ -1,0 +1,478 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    -webkit-user-drag: none;
+}
+
+/* FIXED PAGE LAYOUT — prevents movement */
+body {
+    width: 100%;
+    min-height: 100vh;  /* better than height:100vh for mobile */
+    background-color: black;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow-x: hidden;
+    overflow-y: auto;      /* allow scrolling vertically */
+    scrollbar-width: none; /* hide scrollbar (Firefox) */
+}
+
+body::-webkit-scrollbar {
+    display: none;         /* hide scrollbar (Chrome/Edge) */
+}
+
+/* CENTER LOGO AREA */
+#logo-area {
+    position: relative;
+    margin-top: 40px;
+}
+
+/* Logo */
+#logo {
+    width: 45vh;
+    height: 45vh;
+    object-fit: contain;
+    transition: transform 2s;
+    transform-style: preserve-3d;
+}
+
+#logo:hover {
+    transform: rotateY(180deg);
+}
+
+/* Assistant message box */
+#assistantMsg {
+    position: absolute;
+    top: 20%;
+    left: 100%;
+    width: 300px;
+    min-height: 150px;
+
+    background: rgba(0, 20, 40, 0.7);
+    border: 2px solid #00bfff;
+    color: #00d9ff;
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 12px;
+
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 15px #00d9ff;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+}
+
+/* Main heading text */
+h1 {
+    color: white;
+    font-family: "Momo Trust Display", sans-serif;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 38px;
+    text-align: center;
+}
+
+/* Colored words */
+#name {
+    color: rgb(37, 21, 255);
+    font-family: "Rubik Wet Paint", system-ui;
+    transition: transform 0.5s ease-out, text-shadow 0.5s ease-in;
+}
+
+#name:hover {
+    transform: scale(5.7);
+    text-shadow: 0 0 15px cyan, 0 0 25px rgb(0, 255, 30);
+}
+
+#va {
+    color: rgb(226, 81, 202);
+    font-family: "Rubik Wet Paint", system-ui;
+    transition: transform 0.5s ease-out, text-shadow 0.5s ease-in;
+}
+
+#va:hover {
+    transform: scale(5.7);
+    text-shadow: 0 0 15px rgb(0, 26, 255), 0 0 25px rgb(0, 17, 255);
+}
+
+/* Voice Video */
+#voice {
+    width: 350px;
+    max-width: 90vw; /* for mobile */
+    height: auto;
+    display: none;
+    pointer-events: none;
+    margin-top: 1px;
+}
+
+/* Button */
+#btn {
+   color: white;
+   height: auto;
+   width: 350px;
+   max-width: 90vw;
+   margin-top: 20px;
+
+   border-radius: 20px;
+   background: linear-gradient(to right, rgb(244, 4, 228), blue, rgb(255, 23, 85));
+   padding: 10px;
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 10px;
+
+   font-size: 20px;
+   cursor: pointer;
+
+   box-shadow: 2px 2px 8px rgb(255, 0, 208),
+              10px 10px 50px blue,
+              10px 10px 50px red;
+
+   transition: 0.4s;
+   outline: none;
+   border: none;
+   user-select: none;
+   -webkit-tap-highlight-color: transparent;
+}
+
+#btn:focus,
+#btn:active {
+    outline: none;
+    border: none;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+#btn:hover {
+   letter-spacing: 2px;
+}
+
+/* History Button */
+#historyBtn {
+    margin-top: 60px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    background: #111;
+    color: rgb(13, 255, 0);
+    border: 2px solid cyan;
+    cursor: pointer;
+    transition: transform 0.5s ease-out, text-shadow 0.5s ease-in;
+}
+#historyBtn:hover {
+    transform: scale(1.07);
+}
+
+/* History Panel */
+#historyPanel {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 250px;
+    height: 300px;
+    background: rgba(0, 20, 40, 0.7);
+    border: 2px solid cyan;
+    border-radius: 12px;
+    box-shadow: 0 0 15px cyan;
+    padding: 15px;
+    color: cyan;
+    overflow-y: auto;
+    display: none;   /* hidden by default */
+}
+
+#historyPanel h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#historyList {
+    list-style: none;
+    padding-left: 0;
+    font-size: 16px;
+}
+
+#historyList li {
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgb(255, 30, 0);
+    cursor: pointer;
+}
+
+#mess {
+    color: rgb(255, 0, 238);
+    text-decoration: green underline;
+}
+
+#closeHistory {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgb(0, 255, 64);
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: 0.2s;
+}
+
+#closeHistory:hover {
+    background: rgb(139, 0, 0);
+}
+
+#internetStatus {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: red;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    display: none;      /* hidden by default */
+    z-index: 9999;
+    box-shadow: 0px 2px 10px black;
+}
+
+.cancelBtn {
+    color: #000;
+    background: rgb(255, 38, 0);
+    border: none;
+    border-radius: 4px;
+    padding: 0 5px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+/* Goodbye screen */
+#goodbyeScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: cyan;
+    font-size: 40px;
+    z-index: 10000;
+    opacity: 0;
+    backdrop-filter: blur(0px);
+    transition: opacity 1.5s ease, backdrop-filter 2s ease;
+}
+
+#goodbyeScreen.show {
+    display: flex;
+    opacity: 1;
+    backdrop-filter: blur(10px);
+}
+
+#goodbyeScreen h1 {
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    0% { text-shadow: 0 0 10px cyan; }
+    100% { text-shadow: 0 0 25px cyan, 0 0 50px blue; }
+}
+
+/* Full-screen loader */
+#openingScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+
+    display: flex;
+    flex-direction: column;   /* VIDEO on top, LOADING below */
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+/* Loader Video */
+#openingVideo {
+    width: 80vw;
+    max-width: 800px;
+    height: auto;
+    pointer-events: none;
+}
+
+/* Loading text BELOW video */
+#load {
+    margin-top: 5px;  
+    font-size: 28px;
+    color: rgb(17, 255, 0);
+    font-family: "Momo Trust Display", sans-serif;
+    pointer-events: none;
+}
+
+#openingScreen {
+    display: none;   /* Hidden at page load */
+}
+
+
+/* ============ TABLET RESPONSIVE (600px–1024px) ============ */
+@media (max-width: 1024px) {
+
+    #assistantMsg {
+        left: 105%;
+        font-size: 18px;
+    }
+
+    #logo {
+        width: 40vh;
+        height: 40vh;
+    }
+}
+
+/* ============ MOBILE RESPONSIVE (≤ 600px) ============ */
+@media (max-width: 600px) {
+
+    body {
+        align-items: center;
+    }
+
+    #logo {
+        width: 35vh;
+        height: 35vh;
+    }
+
+    #assistantMsg {
+        position: static;
+        margin-top: 15px;
+        width: 90vw;
+        left: 0;
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 26px;
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+
+    #voice {
+        width: 90vw;
+    }
+
+    #btn {
+        width: 90vw;
+    }
+
+    #historyBtn {
+        width: 90vw;
+        text-align: center;
+    }
+
+    #historyPanel {
+        position: fixed;
+        left: 5%;
+        right: 5%;
+        bottom: 5%;
+        top: auto;
+        width: 90%;
+        height: 45vh;
+    }
+
+    #openingVideo {
+        width: 95vw;
+        max-width: none;
+    }
+}
+
+/* Fluid splash cursor overlay */
+#fluid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    pointer-events: none;   /* don't block clicks */
+    z-index: 50;            /* below loading/goodbye but above page */
+}
+
+/* START OVERLAY */
+#startOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: black; /* solid black background */
+
+    z-index: 10001;
+    pointer-events: auto;
+}
+
+#startCard {
+  width: 350px;
+  max-width: 100vw;
+  padding: 28px;
+  text-align: center;
+  border-radius: 50px;
+  background: linear-gradient(180deg, rgba(2, 2, 60, 0.95), rgba(0,0,30,0.9));
+  border: 1px solid rgba(18, 228, 22, 0.12);
+  box-shadow: 0 8px 30px rgba(209, 201, 229, 0.6);
+  color: #dff;
+}
+#startCard h2 { 
+  margin-bottom: 30px;
+  font-family: "Momo Trust Display", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(255, 0, 242); }
+
+#startBtn {
+    padding: 20px 40px;
+    font-size: 28px;
+    border-radius: 12px;
+
+    background: rgba(0,0,0,0.6);
+    color: #51ff00;
+
+    border: 3px solid #00eaff;
+    box-shadow: 0 0 20px #00eaff, 0 0 40px #00bfff;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#startBtn:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 35px #ff0000, 0 0 70px #ff0000;
+}

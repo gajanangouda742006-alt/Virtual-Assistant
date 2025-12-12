@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahra Virtual Assistant</title>
+    <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Courgette&family=Momo+Trust+Display&family=Pacifico&family=Rubik+80s+Fade&family=Rubik+Wet+Paint&display=swap');
+    </style>
+</head>
+
+<body>
+     
+    <!-- START OVERLAY (user must click to unlock audio in Chrome) -->
+<div id="startOverlay">
+  <div id="startCard">
+    <h2>Welcome to Your Virtual-Assistant !</h2>
+    <button id="startBtn">Start</button>
+  </div>
+</div>
+
+
+
+    <!-- LOGO + MESSAGE -->
+    <div id="logo-area">
+        <img src="logo.jpg" id="logo" alt="logo">
+        <div id="assistantMsg">.........</div>
+    </div>
+
+    <!-- MAIN HEADING -->
+    <h1>I'm <span id="name">Sahra,</span> Your <span id="va">Virtual Assistant</span></h1>
+    
+    <!-- VOICE ANIMATION VIDEO -->
+    <video id="voice" autoplay muted loop playsinline>
+        <source src="voice.mp4" type="video/mp4">
+    </video>
+
+    <!-- MAIN BUTTON -->
+    <button id="btn">
+        <img src="mic.svg" alt="mic">
+        <span id="content">Click here for Talk to me!</span>
+    </button>
+
+    <!-- HISTORY BUTTON + PANEL -->
+    <button id="historyBtn">History</button>
+
+    <div id="historyPanel">
+        <button id="closeHistory">✖</button>
+        <h3 id="mess">Command History</h3>
+        <ul id="historyList"></ul>
+    </div>
+    
+    <!-- INTERNET STATUS BANNER -->
+    <div id="internetStatus">⚠ No Internet Connection</div>
+   
+    <!-- GOODBYE SCREEN -->
+    <div id="goodbyeScreen">
+        <h1>Shutting Down...</h1>
+    </div>
+
+    <!-- OPENING SCREEN -->
+    <div id="openingScreen">
+        <video id="openingVideo" autoplay muted playsinline>
+            <source src="front.mp4" type="video/mp4">
+        </video>
+        <div id="load">Loading......</div>
+    </div>
+    
+    <!-- FLUID CURSOR CANVAS -->
+    <canvas id="fluid"></canvas>
+
+    <!-- WebGL fluid cursor (optional, your existing file) -->
+    <script src="fluid-cursor.js"></script>
+    <!-- Virtual assistant logic -->
+    <script src="assi.js" defer></script>
+</body>
+</html>
